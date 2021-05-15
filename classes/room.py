@@ -13,11 +13,12 @@ class Room:
             return True
         else:
             return False
+
+    def guest_pays_for_entry(self, guest):
+        guest.wallet -= self.price
     
-    def till_accepts_money(self, guest, room):
-        if self.can_pay(guest):
-            room.till += room.price
-            guest.wallet -= room.price
+    def till_accepts_money(self, room):
+        room.till += room.price
 
 
     def add_playlist_to_room(self, playlist):
@@ -26,19 +27,30 @@ class Room:
             # if song["track"] == guest.fav_song:
             #     return self.guest_cheer(guest)
 
-    def add_single_guest_to_room(self, guest):
+    def add_single_guest_to_room(self, guest, room, playlist):
         if len(self.occupants) != self.capacity:
             if self.can_pay(guest):
                 self.occupants.append(guest)
+                self.guest_pays_for_entry(guest)
+                self.till_accepts_money(room)
+                self.add_playlist_to_room(playlist)
+                self.guest_cheer(guest)
+                # for song in self.room_playlist:
+                #     if song == guest.fav_song:
+                #         return self.guest_cheer(guest)
+            else:
+                return "You dont have enough cash"
         else:
             return "Maximum Capacity reached"
 
 
-    def add_guests_to_room(self, guests):
+    def add_guests_to_room(self, guests, room):
         if len(guests) <= self.capacity:
             for guest in guests:
                 if self.can_pay(guest):
                     self.occupants.append(guest)
+                    self.guest_pays_for_entry(guest)
+                    self.till_accepts_money(room)
                 else:
                     return "Alex doesn't have enough cash"
         else:
@@ -51,6 +63,14 @@ class Room:
 
     def check_out_guests(self):
         self.occupants.clear()
+
+    def check_out_single_guest(self, guest):
+        self.occupants.remove(guest)
+
+    def guest_cheer(self, guest):
+        for song in self.room_playlist:
+            if song == guest.fav_song:
+                return "whoo"
 
             
 
