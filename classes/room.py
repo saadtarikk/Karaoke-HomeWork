@@ -44,13 +44,17 @@ class Room:
             return "Maximum Capacity reached"
 
 
-    def add_guests_to_room(self, guests, room):
+    def add_guests_to_room(self, guests, room, playlist):
         if len(guests) <= self.capacity:
             for guest in guests:
                 if self.can_pay(guest):
                     self.occupants.append(guest)
                     self.guest_pays_for_entry(guest)
                     self.till_accepts_money(room)
+                    self.add_playlist_to_room(playlist)
+                    self.guest_cheer(guest)
+
+
                 else:
                     return "Alex doesn't have enough cash"
         else:
@@ -69,7 +73,7 @@ class Room:
 
     def guest_cheer(self, guest):
         for song in self.room_playlist:
-            if song == guest.fav_song:
+            if song.name == guest.fav_song:
                 return "whoo"
 
             
