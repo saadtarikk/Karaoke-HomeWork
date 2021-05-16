@@ -57,10 +57,6 @@ class Room:
         else:
             return "Capacity reached"
 
-    # def guest_has_fav_song_in_room(self, guest):
-    #     for song in self.room_playlist:
-    #         if song["track"] == guest.fav_song:
-    #             return "whoo"
 
     def check_out_guests(self):
         self.occupants.clear()

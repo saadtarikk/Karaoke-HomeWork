@@ -29,6 +29,4 @@ class TestGuest(unittest.TestCase):
     def test_guest_can_buy_drink(self):
         self.guest.buy_drink(self.drink3)
         self.assertEqual(44.00, self.guest.wallet)
-    #- Create rooms, songs and guests
-# - Check in guests to rooms/Check out guests from rooms
-# - Add songs to rooms
+   
