@@ -7,6 +7,7 @@ class Room:
         self.room_playlist = []
         self.occupants = []
         self.till = 0
+        
 
     def can_pay(self, guest):
         if guest.wallet >= self.price:
@@ -14,8 +15,10 @@ class Room:
         else:
             return False
 
+
     def guest_pays_for_entry(self, guest):
         guest.wallet -= self.price
+
     
     def till_accepts_money(self, room):
         room.till += room.price
@@ -24,8 +27,7 @@ class Room:
     def add_playlist_to_room(self, playlist):
         for song in playlist:
             self.room_playlist.append(song)
-            # if song["track"] == guest.fav_song:
-            #     return self.guest_cheer(guest)
+
 
     def add_single_guest_to_room(self, guest, room, playlist):
         if len(self.occupants) != self.capacity:
@@ -35,9 +37,6 @@ class Room:
                 self.till_accepts_money(room)
                 self.add_playlist_to_room(playlist)
                 self.guest_cheer(guest)
-                # for song in self.room_playlist:
-                #     if song == guest.fav_song:
-                #         return self.guest_cheer(guest)
             else:
                 return "You dont have enough cash"
         else:
@@ -53,9 +52,7 @@ class Room:
                     self.till_accepts_money(room)
                     self.add_playlist_to_room(playlist)
                     self.guest_cheer(guest)
-
-
-                else:
+            else:
                     return "Alex doesn't have enough cash"
         else:
             return "Capacity reached"
@@ -68,8 +65,10 @@ class Room:
     def check_out_guests(self):
         self.occupants.clear()
 
+
     def check_out_single_guest(self, guest):
         self.occupants.remove(guest)
+
 
     def guest_cheer(self, guest):
         for song in self.room_playlist:

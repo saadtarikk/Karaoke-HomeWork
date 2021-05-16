@@ -22,9 +22,7 @@ class TestRoom(unittest.TestCase):
         self.song4 = Song("Top Loader", "Dancing in the moonlight")
         self.playlist = [self.song, self.song1, self.song2]
 
-        #make a list with 2 guest with enough money and one with not enough and test it
 
-        #take money off customer wallet and add it to till for room price
         # self.playlist = [{
         #     "artist": "Queen",
         #     "track": "Bohemian Rhapsody",
