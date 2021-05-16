@@ -90,7 +90,13 @@ class TestRoom(unittest.TestCase):
         self.assertEqual("Capacity reached", self.room2.add_guests_to_room(self.guests2, self.room2, self.playlist))
 
     def test_cant_pay_for_room(self):
-        self.assertEqual("Alex doesn't have enough cash", self.room2.add_guests_to_room(self.guests3, self.room2, self.playlist))
+        self.room2.add_guests_to_room(self.guests3, self.room2, self.playlist)
+        # self.assertEqual("Alex doesn't have enough cash", self.room2.add_guests_to_room(self.guests3, self.room2, self.playlist))
+        self.assertEqual(2, len(self.room2.occupants) )
+
+    def test_check_list_of_occupants(self):
+        self.room2.add_guests_to_room(self.guests3, self.room2, self.playlist)
+        self.assertEqual(2, len(self.room2.occupants) )
 
     def test_guest_has_fav_song_in_room_playlist(self):
         self.room1.add_playlist_to_room(self.playlist)

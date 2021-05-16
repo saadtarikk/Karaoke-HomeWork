@@ -37,11 +37,14 @@ class Room:
                 self.till_accepts_money(room)
                 self.add_playlist_to_room(playlist)
                 self.guest_cheer(guest)
-            else:
-                return "You dont have enough cash"
+            # else:
+            #     return  f"{guest.name} doesn't have enough cash"
         else:
             return "Maximum Capacity reached"
 
+    
+
+    # I have removed a return string in below function which, return a string if guest didnt have enough cash but it was returning the string and ending the loop so i wasn't able to get the correct length of list.
 
     def add_guests_to_room(self, guests, room, playlist):
         if len(guests) <= self.capacity:
@@ -51,9 +54,7 @@ class Room:
                     self.guest_pays_for_entry(guest)
                     self.till_accepts_money(room)
                     self.add_playlist_to_room(playlist)
-                    self.guest_cheer(guest)
-            else:
-                    return "Alex doesn't have enough cash"
+                    self.guest_cheer(guest) 
         else:
             return "Capacity reached"
 
